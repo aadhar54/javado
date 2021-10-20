@@ -1,0 +1,82 @@
+public class Solution {
+
+/*	TreeNode structure 
+ * 
+ * class TreeNode<T> {
+		T data;
+		ArrayList<TreeNode<T>> children;
+
+		TreeNode(T data){
+			this.data = data;
+			children = new ArrayList<TreeNode<T>>();
+		}
+	}*/
+	
+	
+	
+	public static void printLevelWise(TreeNode<Integer> root){
+		/* Your class should be named Solution 
+ 		 * Don't write main(). 
+		 * Don't read input, it is passed as function argument. 
+		 * Print output and don't return it. 
+		 * Taking input is handled automatically. 
+         */
+   
+        QueueUsingLL<TreeNode<Integer>> pendingnodes = new  QueueUsingLL<>();
+        
+      System.out.println( root.data );
+        
+        //see root elemnt ke children ko sabse pehle insert krdo while loop se bahar
+        //will tell you why we insert root element children in beginning
+        for(int q=0;q<root.children.size();q++)
+        {
+            pendingnodes.enqueue(root.children.get(q));
+        }
+        
+        // now in queue we have all the children of root element
+       
+        // no need to insert root, we already inserted its children
+       // pendingnodes.enqueue(root);
+        
+        
+        
+        while( !pendingnodes.isEmpty())
+        {
+            // initially find out what is queue size
+            
+            int size=pendingnodes.size();
+            
+                
+                    try
+        {
+                
+            
+            for(int r=0;r<size;r++)
+            {
+                
+                    // we have to put it in try catch
+                    
+             TreeNode<Integer> frontnode = pendingnodes.dequeue();
+                   
+                    System.out.print(frontnode.data+" " );
+                    
+                for(int i=0;i< frontnode.children.size();i++)
+                {
+                TreeNode<Integer> childnode = frontnode.children.get(i);
+                   
+                    pendingnodes.enqueue(childnode);
+                    
+               }
+                
+            }
+                
+                System.out.println();
+            
+        }
+            
+            catch(QueueEmptyException q)
+            {}
+        
+    }
+  }
+}          
