@@ -1,0 +1,45 @@
+import java.util.Stack;
+public class Solution {
+
+	
+	// Function returns -1 if brackets can't be balanced
+	public static int countBracketReversals(String input) {
+      
+        if (input.length() % 2 != 0) {
+            return -1;
+        }
+        int count = 0;
+        
+      Stack<Character> stack = new Stack<>();
+            for (int i = 0; i <= input.length() - 1; i++) {
+                if (input.charAt(i) == '{') {
+                    stack.push(input.charAt(i));
+                } else if (input.charAt(i) == '}') {
+                    if (!stack.isEmpty() && stack.peek() == '{') {
+                        stack.pop();
+                    } else if (stack.isEmpty()) {
+                        stack.push('}');
+                    } else if (stack.peek() == '}') {
+                        stack.push('}');
+                    }
+                }
+            }
+      
+                while (!stack.isEmpty()) {
+                   // x = stack.size();
+                    char c1 = stack.pop();
+                   // x = stack.size();
+                    char c2 = stack.pop();
+                    if (c1 == '{' && c2 == '{') {
+                        count++;
+                    } else if (c1 == '{' && c2 == '}') {
+                        count+=2;
+                    }
+                  
+                  else if(c1=='}' && c2=='}')
+                    count++;
+                  
+                }
+     return count;        
+    }
+}
