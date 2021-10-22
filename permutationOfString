@@ -1,0 +1,32 @@
+public class solution {
+	
+	public static String[] permutationOfString(String input){
+		// Write your code here
+		if(input.length()==0){
+            String output[]={""};
+            return output;
+        }
+        int pos=0;
+        String[] output=new String[0];
+        while(pos<input.length()){
+            String s="";
+            for(int i=0;i<pos;i++)
+                s+=input.charAt(i);
+            for(int i=pos+1;i<input.length();i++)
+                s+=input.charAt(i);
+             String temp[]=permutationOfString(s);
+            String temp2[]=output;
+            output=new String[output.length+temp.length];
+            int k=0;
+            for(int i=0;i<temp2.length;i++)
+                output[k++]=temp2[i];
+            for(int i=0;i<temp.length;i++)
+                output[k++]=input.charAt(pos)+temp[i];
+            pos++;
+        }
+        return output;
+        
+        
+	}
+	
+}
